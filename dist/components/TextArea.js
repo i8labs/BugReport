@@ -30,7 +30,10 @@ export default (function (props) {
   }, []);
   var fileId = uuid();
   return React.createElement("div", {
-    className: "form__form-group text-left"
+    className: "form__form-group text-left",
+    style: {
+      MarginTop: '2vh'
+    }
   }, label && React.createElement("span", {
     className: "form__form-group-label"
   }, label), React.createElement("div", {
@@ -43,7 +46,7 @@ export default (function (props) {
     onKeyUp: doNotAutoResize ? function () {} : expandTextarea,
     ref: textAreaRef,
     value: value,
-    cols: "75"
+    cols: "90"
   }, rest)), err && React.createElement("span", {
     className: "form__form-group-error"
   }, err)), onFileChange && React.createElement("div", {

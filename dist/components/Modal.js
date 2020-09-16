@@ -1,35 +1,38 @@
 import React from 'react';
-import './Modal.css';
+import { Modal, Button } from 'react-bootstrap';
 import BugIcon from "mdi-react/BugIcon";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Modal.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-var Modal = function Modal(props) {
-  var ret = null;
-
-  if (props.open) {
-    ret = React.createElement("div", {
-      className: "react-modal-classname"
-    }, React.createElement("div", {
-      className: "backdrop",
-      onClick: props.onBackDropClicked
-    }), React.createElement("div", {
-      className: "modal",
-      onClick: props.onModalClicked
-    }, React.createElement("div", {
-      className: "close-icon",
-      onClick: props.onCloseClicked
-    }, React.createElement("div", null), React.createElement("div", null)), React.createElement("div", {
-      className: "d-flex align-items-center justify-content-center"
-    }, React.createElement("h4", {
-      className: "text-modal mb-0 modal__title"
-    }, " ", React.createElement(BugIcon, null), " Report Bug")), props.children));
-  }
-
-  return React.createElement(ReactCSSTransitionGroup, {
-    transitionName: "modal",
-    transitionEnterTimeout: 500,
-    transitionLeaveTimeout: 300
-  }, ret);
+var Modals = function Modals(props) {
+  return React.createElement(Modal, {
+    show: props.open,
+    onHide: props.onCloseClicked,
+    size: "lg"
+  }, React.createElement(Modal.Header, {
+    closeButton: true
+  }, React.createElement(Modal.Title, null, "    ", React.createElement(BugIcon, null), "  Report Bug")), React.createElement(Modal.Body, null, props.children));
 };
 
-export default Modal;
+export default Modals; // let ret=null;
+// if (props.open) {
+//   ret = (
+//     <div className="react-modal-classname">
+//     <div className="backdrop" onClick={props.onBackDropClicked}></div>
+//     <div className="modal" onClick={props.onModalClicked}> 
+//       <div className="close-icon"onClick={props.onCloseClicked}>
+//         <div></div>
+//         <div></div>
+//       </div>
+//       <div className="d-flex align-items-center justify-content-center">            
+//           <h4 className="text-modal mb-0 modal__title"> <BugIcon /> Report Bug</h4>
+//       </div>
+//      {props.children} 
+//      </div>
+//     </div>
+//   )
+// }
+// return (<ReactCSSTransitionGroup  transitionName="modal"
+// transitionEnterTimeout={500}
+// transitionLeaveTimeout={300} >{ret}</ReactCSSTransitionGroup>)

@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import BugIcon from "mdi-react/BugIcon";
 import html2canvas from "html2canvas";
-import Modal from "./Modal";
+import Modals from "./Modal";
 import TextArea from "./TextArea";
 import axios from 'axios'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class BugReport extends Component {
   constructor(props) {
     super(props);
@@ -63,6 +65,7 @@ class BugReport extends Component {
     return (
       <div>
         <button
+          style = {{color : this.props.color}}
           className="bug-icon"
           type="button"
           title="Report a bug"
@@ -70,7 +73,7 @@ class BugReport extends Component {
         >
           <BugIcon />
         </button>
-        <Modal open={modal} onCloseClicked={this.toggle} onBackDropClicked={this.toggle}>
+        <Modals open={modal} onCloseClicked={this.toggle} onBackDropClicked={this.toggle}>
           {insertedId ? (
             <div>
               <h5 className="d-flex justify-content-center">
@@ -87,8 +90,8 @@ class BugReport extends Component {
               </div>
             </div>
           ) : (
-            <form className="form mt-5" onSubmit={this.handleSubmit}>
-              <span className="red">Screenshot</span>
+            <form className="form" onSubmit={this.handleSubmit}>
+              <span>Screenshot</span>
               <img
                 src={screenshot}
                 alt="screenshot"
@@ -96,6 +99,7 @@ class BugReport extends Component {
                 height="380px"
                 className="rounded"
               />
+              <div className = "mt-5"/>
               <TextArea
                 doNotAutoResize
                 name="Description"
@@ -127,7 +131,7 @@ class BugReport extends Component {
               </div>
             </form>
           )}
-        </Modal>
+        </Modals>
       </div>
     );
   }

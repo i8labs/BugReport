@@ -12,14 +12,15 @@ import BugReport from 'report-bug';
 ## Usage
 
 ```js
- <BugReport user = {current_username} app_id = {current_appname} />
+ <BugReport user = {current_username} app_id = {current_appname} color = {bug_icon_color} />
  ```
 
  ## Props
 
- user : _string_
+ user : _string_       (current logged in user)
+ app_id : _string_     (client app name)
+ color : _string_      (bug icon color)
 
- app_id : _string_
 
 
 ## Working
@@ -47,4 +48,6 @@ import BugReport from 'report-bug';
  ![Demo of bug submitted interface.](./src/data/demo1.png)
 
  MIT © [ronit@i8labs.io](https://github.com/khatrironit)
+ 
+
  

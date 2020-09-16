@@ -8,9 +8,10 @@ import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from "react";
 import BugIcon from "mdi-react/BugIcon";
 import html2canvas from "html2canvas";
-import Modal from "./Modal";
+import Modals from "./Modal";
 import TextArea from "./TextArea";
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 var BugReport =
 /*#__PURE__*/
@@ -160,11 +161,14 @@ function (_Component) {
           isLoading = _this$state2.isLoading,
           insertedId = _this$state2.insertedId;
       return React.createElement("div", null, React.createElement("button", {
+        style: {
+          color: this.props.color
+        },
         className: "bug-icon",
         type: "button",
         title: "Report a bug",
         onClick: this.captureScreenShot
-      }, React.createElement(BugIcon, null)), React.createElement(Modal, {
+      }, React.createElement(BugIcon, null)), React.createElement(Modals, {
         open: modal,
         onCloseClicked: this.toggle,
         onBackDropClicked: this.toggle
@@ -177,16 +181,16 @@ function (_Component) {
         className: "modal_ok",
         color: "danger"
       }, "Ok"))) : React.createElement("form", {
-        className: "form mt-5",
+        className: "form",
         onSubmit: this.handleSubmit
-      }, React.createElement("span", {
-        className: "red"
-      }, "Screenshot"), React.createElement("img", {
+      }, React.createElement("span", null, "Screenshot"), React.createElement("img", {
         src: screenshot,
         alt: "screenshot",
         width: "100%",
         height: "380px",
         className: "rounded"
+      }), React.createElement("div", {
+        className: "mt-5"
       }), React.createElement(TextArea, {
         doNotAutoResize: true,
         name: "Description",

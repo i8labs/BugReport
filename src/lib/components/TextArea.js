@@ -34,7 +34,7 @@ export default (props) => {
   const fileId = uuid();
 
   return (
-    <div className="form__form-group text-left">
+    <div className="form__form-group text-left" style = {{MarginTop : '2vh'}}>
       {label && <span className="form__form-group-label">{label}</span>}
       <div className="form__form-group-field d-flex align-items-stretch">
         {Icon && (
@@ -48,7 +48,7 @@ export default (props) => {
             onKeyUp={doNotAutoResize ? () => {} : expandTextarea}
             ref={textAreaRef}
             value={value}
-            cols = "75"
+            cols = "90"
             {...rest}
           ></textarea>
           {err && <span className="form__form-group-error">{err}</span>}
