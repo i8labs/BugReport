@@ -14,8 +14,7 @@ class BugReport extends Component {
       screenshot: "",
       desc: "",
       isLoading: false,
-      insertedId: "",
-      page_id : window.location.pathname.slice(1)
+      insertedId: ""
     };
   }
 
@@ -45,8 +44,8 @@ class BugReport extends Component {
     try {
       const entity_id = this.props.user   
       const app_id = this.props.app_id
-      const { desc, screenshot ,page_id} = this.state;
-
+      const { desc, screenshot} = this.state;
+      const page_id = window.location.pathname.slice(1)
       const body = { page_id, entity_id, app_id, desc, screenshot };
       console.log("body report",body)
       this.setState({ isLoading: true });
@@ -61,17 +60,18 @@ class BugReport extends Component {
   };
 
   render() {
+    
     const { modal, screenshot, desc, isLoading, insertedId } = this.state;
     return (
       <div>
         <button
-          style = {{color : this.props.color}}
           className="bug-icon"
+          style = {{color : `${this.props.color}`}}
           type="button"
           title="Report a bug"
           onClick={this.captureScreenShot}
         >
-          <BugIcon />
+          <BugIcon  style = {{color : `${this.props.color}`}} />
         </button>
         <Modals open={modal} onCloseClicked={this.toggle} onBackDropClicked={this.toggle}>
           {insertedId ? (
@@ -92,6 +92,7 @@ class BugReport extends Component {
           ) : (
             <form className="form" onSubmit={this.handleSubmit}>
               <span>Screenshot</span>
+              <span style = {{float : 'right',color : 'grey'}}>Date : {(new Date()).toLocaleDateString()}</span>
               <img
                 src={screenshot}
                 alt="screenshot"

@@ -88,7 +88,8 @@ function (_Component) {
                 _context2.prev = 2;
                 entity_id = _this.props.user;
                 app_id = _this.props.app_id;
-                _this$state = _this.state, desc = _this$state.desc, screenshot = _this$state.screenshot, page_id = _this$state.page_id;
+                _this$state = _this.state, desc = _this$state.desc, screenshot = _this$state.screenshot;
+                page_id = window.location.pathname.slice(1);
                 body = {
                   page_id: page_id,
                   entity_id: entity_id,
@@ -102,10 +103,10 @@ function (_Component) {
                   isLoading: true
                 });
 
-                _context2.next = 11;
+                _context2.next = 12;
                 return axios.post('https://b6skvn9l7h.execute-api.ap-south-1.amazonaws.com/Dev/adminbugreport', body);
 
-              case 11:
+              case 12:
                 res = _context2.sent;
                 console.log("bug report", res);
                 insertedId = res.data.body;
@@ -115,11 +116,11 @@ function (_Component) {
                   insertedId: insertedId
                 });
 
-                _context2.next = 21;
+                _context2.next = 22;
                 break;
 
-              case 17:
-                _context2.prev = 17;
+              case 18:
+                _context2.prev = 18;
                 _context2.t0 = _context2["catch"](2);
                 console.log(_context2.t0);
 
@@ -127,12 +128,12 @@ function (_Component) {
                   isLoading: false
                 });
 
-              case 21:
+              case 22:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[2, 17]]);
+        }, _callee2, null, [[2, 18]]);
       }));
 
       return function (_x) {
@@ -145,8 +146,7 @@ function (_Component) {
       screenshot: "",
       desc: "",
       isLoading: false,
-      insertedId: "",
-      page_id: window.location.pathname.slice(1)
+      insertedId: ""
     };
     return _this;
   }
@@ -161,14 +161,18 @@ function (_Component) {
           isLoading = _this$state2.isLoading,
           insertedId = _this$state2.insertedId;
       return React.createElement("div", null, React.createElement("button", {
-        style: {
-          color: this.props.color
-        },
         className: "bug-icon",
+        style: {
+          color: "".concat(this.props.color)
+        },
         type: "button",
         title: "Report a bug",
         onClick: this.captureScreenShot
-      }, React.createElement(BugIcon, null)), React.createElement(Modals, {
+      }, React.createElement(BugIcon, {
+        style: {
+          color: "".concat(this.props.color)
+        }
+      })), React.createElement(Modals, {
         open: modal,
         onCloseClicked: this.toggle,
         onBackDropClicked: this.toggle
@@ -183,7 +187,12 @@ function (_Component) {
       }, "Ok"))) : React.createElement("form", {
         className: "form",
         onSubmit: this.handleSubmit
-      }, React.createElement("span", null, "Screenshot"), React.createElement("img", {
+      }, React.createElement("span", null, "Screenshot"), React.createElement("span", {
+        style: {
+          float: 'right',
+          color: 'grey'
+        }
+      }, "Date : ", new Date().toLocaleDateString()), React.createElement("img", {
         src: screenshot,
         alt: "screenshot",
         width: "100%",
