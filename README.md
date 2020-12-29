@@ -46,8 +46,10 @@ import BugReport from 'report-bug';
  ```
  ![Demo of Report Bug interface.](./src/data/demo.png)
  ![Demo of bug submitted interface.](./src/data/demo1.png)
+ 
 
- MIT © [ronit@i8labs.io](https://github.com/khatrironit)
+
+ MIT © [anuj@i8labs.io](http://i8labs.io)
  
 
  
